@@ -1,0 +1,100 @@
+:root{
+    --neon-color: #0099ff;
+}
+
+
+body{
+    margin:0;
+    background: rgb(30, 30, 30);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#verticalButtons{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    padding: 1em 1em 1em 1em;
+    margin: 2em;
+    cursor: pointer;
+}
+
+#carCanvas{
+    background: lightgray;
+}
+
+#networkCanvas{
+    background: black;
+}
+
+.neon-button{
+    font-size: 1rem;
+    background: rgb(30, 30, 30);
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--neon-color);
+    border: var(--neon-color) 0.125em solid;
+    padding: 0.25em 1em;
+    border-radius: 0.25em;
+
+    text-shadow: 
+    0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.0.45em currentColor;
+
+    box-shadow: inset 0 0 0.5em 0 var(--neon-color),
+                0 0 0.5em 0 var(--neon-color)
+    ;
+
+    position: relative;
+    transition: rgb(30, 30, 30) 100ms linear;
+    
+}
+
+.neon-button::before{
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    background: var(--neon-color);
+    top: 120%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+    filter: blur(1em);
+    opacity: 0.7;
+}
+
+.neon-button::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 0 1em 0.5em var(--neon-color);
+    opacity: 0;
+    transition: opacity 100ms linear;
+}
+
+.neon-button:hover,
+.neon-button:focus{
+    background: var(--neon-color);
+    color:rgb(30, 30, 30);
+    text-shadow: none;
+}
+
+.neon-button:hover::before,
+.neon-button:focus::before{
+    opacity: 1;
+}
+
+.neon-button:hover::after,
+.neon-button:focus::after{
+    opacity: 1;
+}
